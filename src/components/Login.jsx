@@ -3,14 +3,14 @@ import { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
-import { UserRound, X } from "lucide-react";
+import { X } from "lucide-react";
+import { FaRegUser } from "react-icons/fa";
 import AuthContext from "../contextapi/AuthContext";
 import { toast } from "react-toastify";
 
-function Login() {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+function Login({ show, handleClose, hideIcon = false }) {
+  const [internalShow, setInternalShow] = useState(false);
+  const modalVisible = show !== undefined ? show : internalShow;
 
   const { loginUser } = useContext(AuthContext);
 
@@ -27,30 +27,41 @@ function Login() {
     e.preventDefault();
 
     if (!formData.email || !formData.password) {
-      toast.error("Please fill  both email and password.");
+      toast.error("Please fill both email and password.");
       return;
     }
 
     loginUser(formData.email, formData.password);
-    handleClose(); // Close modal on successful login
+
+    if (handleClose) {
+      handleClose(); // external
+    } else {
+      setInternalShow(false); // internal
+    }
+  };
+
+  const closeModal = () => {
+    if (handleClose) {
+      handleClose();
+    } else {
+      setInternalShow(false);
+    }
   };
 
   return (
     <>
-      <button
-        className="p-2 text-gray-700 hover:text-blue transition-colors"
-        aria-label="Wishlist"
-      >
-        <UserRound color="black" size={24} />
-      </button>
-
-      {/* <li className="cursor-pointer hover:text-blue-600" onClick={handleShow}>
-        
-      </li> */}
+      {!hideIcon && (
+        <button
+          className="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium flex items-center"
+          onClick={() => setInternalShow(true)}
+        >
+          <FaRegUser />
+        </button>
+      )}
 
       <Modal
-        show={show}
-        onHide={handleClose}
+        show={modalVisible}
+        onHide={closeModal}
         centered
         size="lg"
         backdrop="static"
@@ -69,14 +80,14 @@ function Login() {
 
             {/* Right Form */}
             <Col xs={12} md={6} className="p-4">
-              <div className="login-section-part flex justify-between items-center">
-                <h3 className="mb-4">Login</h3>
-                <span className="cursor-pointer" onClick={handleClose}>
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="mb-0">Login</h3>
+                <span className="cursor-pointer" onClick={closeModal}>
                   <X />
                 </span>
               </div>
 
-              <Form className="mx-auto" onSubmit={handleSubmit}>
+              <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formEmail">
                   <Form.Label>Email</Form.Label>
                   <Form.Control

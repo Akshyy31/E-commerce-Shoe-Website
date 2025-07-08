@@ -1,27 +1,27 @@
-import {React, useState , useEffect } from "react";
-import Navbar from "./Navbar";
+import { React, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Footer from "./Footer";
-import axios from 'axios'
+import axios from "axios";
+import Navbar1 from "../Navbar/Navbar1";
 
 function Home() {
-
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
     if (userId) {
-      axios.get(`http://localhost:3000/users/${userId}`)
+      axios
+        .get(`http://localhost:3000/users/${userId}`)
         .then((res) => setUser(res.data))
         .catch((err) => console.error("Error fetching user", err));
     }
   }, []);
 
   console.log(user);
-  
 
   return (
     <div>
-      <Navbar />
+      <Navbar1 />
       <div className="flex justify-center items-center w-full h-screen bg-100 bg-black">
         <div
           className="relative w-full sm:w-[90%] lg:w-[70%] h-[600px]   mx-auto bg-cover bg-center rounded-xl overflow-hidden"
@@ -45,9 +45,16 @@ function Home() {
                 quae est placeat architecto tenetur sunt voluptate tempore
                 obcaecati assumenda.
               </p>
-              <button className="px-3 py-2 bg-black text-white font-semibold rounded  border-0  transition">
+              {/* <button className="px-3 py-2 bg-black text-white font-semibold rounded  border-0  transition">
                 View Collection
-              </button>
+              </button> */}
+
+              <Link
+                to="/productlist"
+                className="inline-block px-4 py-2 bg-black text-black text-sm font-medium rounded-md shadow hover:bg-gray-800 no-underline transition duration-200"
+              >
+                View Collection
+              </Link>
             </div>
           </div>
         </div>
@@ -57,7 +64,7 @@ function Home() {
 
       {/* ----------------footer----------------- */}
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

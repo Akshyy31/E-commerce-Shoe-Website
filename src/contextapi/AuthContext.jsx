@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Api } from "../commonapi/api";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const AuthContext = createContext();
 
@@ -13,8 +13,10 @@ export const AuthProvider = ({ children }) => {
   //  Load user from localStorage on page refresh
   useEffect(() => {
     const userId = localStorage.getItem("userId");
-    console.log("userid : " , userId);
+    console.log("userid : ", userId);
     
+    
+
     if (userId) {
       Api.get(`/users/${userId}`)
         .then((res) => setCurrentUser(res.data))
@@ -23,34 +25,34 @@ export const AuthProvider = ({ children }) => {
         });
     }
   }, []);
-
+  
 
   // Login logic
   const loginUser = async (email, password) => {
-  try {
-    const res = email.trim().toLowerCase();
-    const { data: [user] } = await axios.get(
-      `http://localhost:3000/users?email=${cleanEmail}`
-    );
+    try {
+      const cleanEmail = email.trim().toLowerCase();
+      const {
+        data: [user],
+      } = await axios.get(`http://localhost:3000/users?email=${cleanEmail}`);
 
-    if (!user) {
-      toast.error("User not found. Please register first.");
-      return navigate("/register");
+      if (!user) {
+        toast.error("User not found. Please register first.");
+        return navigate("/register");
+      }
+
+      if (user.password !== password) {
+        toast.error("Incorrect password");
+        return;
+      }
+
+      localStorage.setItem("userId", user.id);
+      setCurrentUser(user);
+      toast.success("Login successful!");
+      navigate("/");
+    } catch {
+      toast.error("Login failed. Please try again.");
     }
-
-    if (user.password !== password) {
-      toast.error("Incorrect password");
-      return;
-    }
-
-    localStorage.setItem("userId", user.id);
-    setCurrentUser(user);
-    toast.success('Login successful!');
-    navigate("/");
-  } catch {
-    toast.error("Login failed. Please try again.");
-  }
-};
+  };
 
   // ✅ Registration logic
   const registerUser = async (formData) => {
@@ -60,14 +62,14 @@ export const AuthProvider = ({ children }) => {
       );
 
       if (existingUsers.length > 0) {
-        alert("Email already registered. Please login.");
-        navigate("/login");
+        toast.success("Email already registered. Please login.");
+        navigate("/");
         return;
       }
 
       await axios.post("http://localhost:3000/users", formData);
       alert("Registration successful!");
-      navigate("/login");
+      navigate("/");
     } catch (err) {
       console.error("Error registering user", err);
     }
