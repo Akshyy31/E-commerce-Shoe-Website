@@ -29,7 +29,8 @@
       "category": "Men",
       "description": "High-Quality Formal shoe for men",
       "stock": 10,
-      "quantity": 1
+      "quantity": 1,
+      "isNew":"new"
     },
     {
       "id": 2,
@@ -69,7 +70,8 @@
       "category": "Men",
       "description": "High-Quality casual shoe for men",
       "stock": 10,
-      "quantity": 1
+      "quantity": 1,
+      "isNew":"new"
     },
     {
       "id": 6,

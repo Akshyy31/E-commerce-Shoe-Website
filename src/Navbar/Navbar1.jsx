@@ -2,6 +2,7 @@ import { React, useContext } from "react";
 import Login from "../components/Login";
 import AuthContext from "../contextapi/AuthContext";
 import { Link } from "react-router-dom";
+import { Heart, ShoppingCart } from "lucide-react";
 
 function Navbar1() {
   const { currentUser, logoutUser } = useContext(AuthContext);
@@ -12,7 +13,7 @@ function Navbar1() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0">
-              <a href="#" className="font-bold text-lg text-gray-900">
+              <a href="#" className="font-bold text-lg text-black">
                 Urban-Foot
               </a>
             </div>
@@ -59,32 +60,38 @@ function Navbar1() {
             </div>
 
             {/* <!-- Desktop Menu --> */}
-            <div className="hidden md:ml-6 md:flex md:items-center">
+            <div className="text-black hidden md:ml-6 md:flex md:items-center">
               <div className="flex space-x-8">
-                <a
-                  href="#"
-                  className="text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium"
+                <Link
+                  to={'/'}
+                  className="!text-black hover:text-indigo-600 px-3 py-2 text-sm font-medium"
                 >
                   Home
-                </a>
+                </Link>
+                  <Link
+                  to={'/productlist'}
+                  className="!text-black  px-3 py-2 text-sm font-medium"
+                >
+                  products
+                </Link>
                 <Link
                   to='/cartpage'
                   className="text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium"
                 >
-                  Cart
+                  <ShoppingCart size={24} color="black" />
                 </Link>
                 <a
                   href="#"
                   className="text-gray-500 hover:text-indigo-600 px-3 py-2 text-sm font-medium"
                 >
-                  Wishlist
+                  <Heart size={24} color="black" />
                 </a>
 
                 {/* <!-- Login Dropdown --> */}
                 <div className="relative group">
                   {currentUser ? (
                     <div className="relative group">
-                      <div className="flex items-center cursor-pointer px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-full">
+                      <div className="flex items-center cursor-pointer px-3 py-2 text-sm font-medium text-white bg-black rounded-full">
                         Hi, {currentUser.username}
                       </div>
 

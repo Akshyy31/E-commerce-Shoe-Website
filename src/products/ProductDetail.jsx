@@ -39,6 +39,7 @@ function ProductDetail() {
       return;
     } else {
       addToCart(product);
+      toast.success(`${quantity} item added to the cart`);
     }
   };
 
@@ -110,10 +111,10 @@ function ProductDetail() {
               </button>
             </div>
             <Login
-  show={showLoginModal}
-  handleClose={() => setShowLoginModal(false)}
-  hideIcon={true}
-/>
+              show={showLoginModal}
+              handleClose={() => setShowLoginModal(false)}
+              hideIcon={true}
+            />
             <button
               onClick={handleAddToCart}
               className="w-40 bg-black text-white font-medium py-2 rounded transition duration-300"

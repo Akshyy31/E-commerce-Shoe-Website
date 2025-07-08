@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import axios from "axios";
 import Navbar1 from "../Navbar/Navbar1";
+import { Slice } from "lucide-react";
+import ProductCard from "../products/ProductCard";
 
 function Home() {
   const [user, setUser] = useState(null);

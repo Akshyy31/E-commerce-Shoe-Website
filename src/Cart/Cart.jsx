@@ -4,6 +4,7 @@ import Navbar1 from "../Navbar/Navbar1";
 import { Link } from "react-router-dom";
 
 function Cart() {
+  
   const { cart, increment, decrement, removeFromCart, clearCart } =
     useContext(CartContext);
 

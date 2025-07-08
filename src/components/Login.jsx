@@ -3,8 +3,8 @@ import { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
-import { X } from "lucide-react";
-import { FaRegUser } from "react-icons/fa";
+import { User, X } from "lucide-react";
+// import { FaRegUser } from "react-icons/fa";
 import AuthContext from "../contextapi/AuthContext";
 import { toast } from "react-toastify";
 
@@ -55,7 +55,7 @@ function Login({ show, handleClose, hideIcon = false }) {
           className="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium flex items-center"
           onClick={() => setInternalShow(true)}
         >
-          <FaRegUser />
+          <User size={24} color="black" />
         </button>
       )}
 
