@@ -15,29 +15,7 @@
       "email": "akshayshaji688@gmail.com",
       "password": "akshay@123",
       "role": "user",
-      "cart": [
-        {
-          "id": "3",
-          "name": "Nike- AIr- Jordan",
-          "image": "https://i.pinimg.com/736x/85/6c/97/856c975f66ac7693d0b98710d84764d5.jpg",
-          "price": 3900,
-          "category": "Men",
-          "description": "High-Quality casual shoe for men",
-          "stock": 10,
-          "quantity": 1
-        },
-        {
-          "id": "1",
-          "name": "Reebok",
-          "image": "https://i.pinimg.com/736x/85/6c/97/856c975f66ac7693d0b98710d84764d5.jpg",
-          "price": 2900,
-          "category": "Men",
-          "description": "High-Quality Formal shoe for men",
-          "stock": 10,
-          "quantity": 8,
-          "isNew": "new"
-        }
-      ],
+      "cart": [],
       "wishlist": []
     }
   ],

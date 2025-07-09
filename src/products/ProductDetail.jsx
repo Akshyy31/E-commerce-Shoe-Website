@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Api } from "../commonapi/api";
 import AuthContext from "../contextapi/AuthContext";
 import CartContext from "../contextapi/CartContext";
@@ -14,7 +14,8 @@ function ProductDetail() {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [selectedSize, setSelectedSize] = useState("35");
+  const [selectedSize, setSelectedSize] = useState("UK 6");
+  const [selectedColor, setSelectedColor] = useState("gray");
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -40,24 +41,40 @@ function ProductDetail() {
   return (
     <div>
       <Navbar1 />
-      <div className="max-w-4xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 gap-12">
-        {/* Product Image */}
-        <div>
-          <img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-[400px] object-contain border rounded"
-          />
-        </div>
+      <div className="min-h-screen flex items-center">
+      <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* Product Images */}
+        <div className="flex gap-4">
+  <div className="w-1/2 h-[400px] border rounded overflow-hidden">
+    <img
+      src={product.image}
+      alt={product.name}
+      className="w-full h-full object-cover"
+    />
+  </div>
+  <div className="w-1/2 h-[400px] border rounded overflow-hidden">
+    <img
+      src={product.image}
+      alt={product.name}
+      className="w-full h-full object-cover"
+    />
+  </div>
+</div>
 
         {/* Product Info */}
         <div className="space-y-4">
-          <h1 className="text-3xl font-bold uppercase">{product.name}</h1>
-
-          <p className="text-xl font-semibold text-gray-900">
+          <h2 className="text-2xl font-bold text-gray-900">
+            {product.name}
+          </h2>
+          <p className="text-sm text-gray-600 mb-2">{product.description}</p>
+          <p className="text-2xl font-bold text-gray-800">
             ₹ {Number(product.price).toLocaleString()}
           </p>
-          <p className="text-gray-500 text-sm">Tax included.</p>
+          <p className="text-sm text-gray-500">MRP incl. of all taxes</p>
+
+          
+          
+
 
           {/* Size Selector */}
           <div>
@@ -79,45 +96,34 @@ function ProductDetail() {
             </div>
           </div>
 
-          {/* Quantity Selector */}
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-1">Quantity</h3>
-            <div className="flex items-center w-32 border rounded overflow-hidden">
-              <button
-                onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
-                className="w-10 py-2 text-xl bg-gray-100 hover:bg-gray-200"
-              >
-                −
-              </button>
-              <div className="w-12 text-center">{quantity}</div>
-              <button
-                onClick={() => setQuantity((prev) => prev + 1)}
-                className="w-10 py-2 text-xl bg-gray-100 hover:bg-gray-200"
-              >
-                +
-              </button>
-            </div>
+          {/* Quantity Dropdown */}
+          <div className="mt-4">
+            <p className="text-sm font-medium text-gray-700 mb-1">Quantity</p>
+            <select
+              value={quantity}
+              onChange={(e) => setQuantity(Number(e.target.value))}
+              className="border px-3 py-2 rounded w-24"
+            >
+              {[...Array(10).keys()].map((num) => (
+                <option key={num + 1} value={num + 1}>
+                  {String(num + 1).padStart(2, "0")}
+                </option>
+              ))}
+            </select>
           </div>
 
-          {/* Stock status */}
-          {product.stock === 1 ? (
-            <p className="text-sm text-red-600 font-semibold">
-              1 left in stock
-            </p>
-          ) : (
-            <p
-              className={`text-sm font-semibold ${
-                product.stock > 0 ? "text-green-600" : "text-red-600"
-              }`}
+          {/* Add to Cart & Wishlist */}
+          <div className="flex gap-4 mt-6 ">
+            <button
+              onClick={handleAddToCart}
+              className="w-1/2 bg-red-600 hover:bg-red-700 text-white py-3 rounded font-semibold"
             >
-              {product.stock > 0 ? "In Stock" : "Out of Stock"}
-            </p>
-          )}
-
-          {/* Delivery Info */}
-          <p className="text-sm font-medium text-gray-700 tracking-wide">
-            NEXT DAY SHIPPING | FREE DELIVERY | COD AVAILABLE
-          </p>
+              ADD TO CART
+            </button>
+            <button className="w-1/2 border border-teal-600 text-teal-700 hover:bg-teal-50 py-3 rounded font-semibold">
+              ♡ ADD TO WISHLIST
+            </button>
+          </div>
 
           <Login
             show={showLoginModal}
@@ -125,18 +131,11 @@ function ProductDetail() {
             hideIcon={true}
           />
 
-          {/* Buttons */}
-          <div className="space-y-3 mt-6">
-            <button
-              onClick={handleAddToCart}
-              className="w-full border border-black text-black py-3 font-medium hover:bg-black hover:text-white transition"
-            >
-              Add to cart
-            </button>
-            
-          </div>
+          
+         
         </div>
       </div>
+    </div>
     </div>
   );
 }
