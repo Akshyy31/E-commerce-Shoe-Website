@@ -106,6 +106,10 @@ export const CartProvider = ({ children }) => {
     updateBackendCart(updatedCart);
   };
 
+  
+const getTotalAmount = () => {
+  return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+};
   return (
     <CartContext.Provider
       value={{
@@ -117,6 +121,8 @@ export const CartProvider = ({ children }) => {
         clearCart,
         increment,
         decrement,
+        getTotalAmount
+
       }}
     >
       {children}

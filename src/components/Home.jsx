@@ -81,7 +81,7 @@ function Home() {
                   </p>
                   <Link
                     to={`/product-detail/${product.id}`}
-                    className="inline-block mt-3 text-xs font-medium text-white bg-black px-4 py-1.5 rounded hover:bg-gray-800 transition"
+                    className="inline-block mt-3 text-xs font-medium text-white !bg-black px-4 py-1.5 rounded hover:bg-gray-800 transition"
                   >
                     View
                   </Link>

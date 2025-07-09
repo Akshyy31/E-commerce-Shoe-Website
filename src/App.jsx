@@ -7,6 +7,8 @@ import Register from "./components/Register";
 import ProductList from "./products/ProductList";
 import ProductDetail from "./products/ProductDetail";
 import Cart from "./Cart/Cart";
+import Checkout from "./components/CheckOut";
+import Order from "./components/Order";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/productlist" element={<ProductList/>} />
         <Route path="/product-detail/:id" element={<ProductDetail/>} />
         <Route path="/cartpage" element={<Cart/>} />
+        <Route path="/check-out" element={<Checkout/>} />
+        <Route path="/order-confirmation" element={<Order/>} />
       </Routes>
     </div>
   );
