@@ -15,25 +15,46 @@
       "email": "akshayshaji688@gmail.com",
       "password": "akshay@123",
       "role": "user",
-      "cart": [],
+      "cart": [
+        {
+          "id": "3",
+          "name": "Nike- AIr- Jordan",
+          "image": "https://i.pinimg.com/736x/85/6c/97/856c975f66ac7693d0b98710d84764d5.jpg",
+          "price": 3900,
+          "category": "Men",
+          "description": "High-Quality casual shoe for men",
+          "stock": 10,
+          "quantity": 1
+        },
+        {
+          "id": "1",
+          "name": "Reebok",
+          "image": "https://i.pinimg.com/736x/85/6c/97/856c975f66ac7693d0b98710d84764d5.jpg",
+          "price": 2900,
+          "category": "Men",
+          "description": "High-Quality Formal shoe for men",
+          "stock": 10,
+          "quantity": 8,
+          "isNew": "new"
+        }
+      ],
       "wishlist": []
     }
   ],
-
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Reebok",
       "image": "https://i.pinimg.com/736x/85/6c/97/856c975f66ac7693d0b98710d84764d5.jpg",
       "price": 2900,
       "category": "Men",
       "description": "High-Quality Formal shoe for men",
-      "stock": 10,
+      "stock": 1,
       "quantity": 1,
-      "isNew":"new"
+      "isNew": "new"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Nike- AIr- Jordan",
       "image": "https://i.pinimg.com/736x/8b/3b/fa/8b3bfaf6d9a9ad6cc09c45f3d1b06395.jpg",
       "price": 3900,
@@ -43,7 +64,7 @@
       "quantity": 1
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Nike- AIr- Jordan",
       "image": "https://i.pinimg.com/736x/85/6c/97/856c975f66ac7693d0b98710d84764d5.jpg",
       "price": 3900,
@@ -53,7 +74,7 @@
       "quantity": 1
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Nike- AIr- Jordan",
       "image": "https://i.pinimg.com/736x/8b/3b/fa/8b3bfaf6d9a9ad6cc09c45f3d1b06395.jpg",
       "price": 3900,
@@ -63,7 +84,7 @@
       "quantity": 1
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Nike- AIr- Jordan",
       "image": "https://i.pinimg.com/736x/8b/3b/fa/8b3bfaf6d9a9ad6cc09c45f3d1b06395.jpg",
       "price": 3900,
@@ -71,10 +92,10 @@
       "description": "High-Quality casual shoe for men",
       "stock": 10,
       "quantity": 1,
-      "isNew":"new"
+      "isNew": "new"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Nike- AIr- Jordan",
       "image": "https://i.pinimg.com/736x/8b/3b/fa/8b3bfaf6d9a9ad6cc09c45f3d1b06395.jpg",
       "price": 3900,
@@ -84,7 +105,7 @@
       "quantity": 1
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Nike- AIr- Jordan",
       "image": "https://i.pinimg.com/736x/8b/3b/fa/8b3bfaf6d9a9ad6cc09c45f3d1b06395.jpg",
       "price": 3900,
@@ -94,11 +115,21 @@
       "quantity": 1
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Nike- AIr- Jordan",
       "image": "https://i.pinimg.com/736x/8b/3b/fa/8b3bfaf6d9a9ad6cc09c45f3d1b06395.jpg",
       "price": 3900,
       "category": "Men",
+      "description": "High-Quality casual shoe for men",
+      "stock": 10,
+      "quantity": 1
+    },
+    {
+      "id": "9",
+      "name": "Nike- AIr- Jordan",
+      "image": "https://i.pinimg.com/736x/8b/3b/fa/8b3bfaf6d9a9ad6cc09c45f3d1b06395.jpg",
+      "price": 3900,
+      "category": "Women",
       "description": "High-Quality casual shoe for men",
       "stock": 10,
       "quantity": 1

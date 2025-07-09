@@ -3,10 +3,12 @@ import Login from "../components/Login";
 import AuthContext from "../contextapi/AuthContext";
 import { Link } from "react-router-dom";
 import { Heart, ShoppingCart } from "lucide-react";
+import CartContext from "../contextapi/CartContext";
 
 function Navbar1() {
   const { currentUser, logoutUser } = useContext(AuthContext);
-
+  const { cartCount } = useContext(CartContext);
+  
   return (
     <div>
       <nav className="bg-white shadow-sm sticky top-0 z-50">
@@ -63,23 +65,30 @@ function Navbar1() {
             <div className="text-black hidden md:ml-6 md:flex md:items-center">
               <div className="flex space-x-8">
                 <Link
-                  to={'/'}
+                  to={"/"}
                   className="!text-black hover:text-indigo-600 px-3 py-2 text-sm font-medium"
                 >
                   Home
                 </Link>
-                  <Link
-                  to={'/productlist'}
+                <Link
+                  to={"/productlist"}
                   className="!text-black  px-3 py-2 text-sm font-medium"
                 >
                   products
                 </Link>
                 <Link
-                  to='/cartpage'
-                  className="text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium"
+                  to="/cartpage"
+                  className="relative text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium"
                 >
                   <ShoppingCart size={24} color="black" />
+
+                  {cartCount > 0 && (
+                    <span className="absolute top-0 right-0 -mt-1 -mr-1 bg-red-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                      {cartCount}
+                    </span>
+                  )}
                 </Link>
+
                 <a
                   href="#"
                   className="text-gray-500 hover:text-indigo-600 px-3 py-2 text-sm font-medium"
@@ -112,12 +121,6 @@ function Navbar1() {
                   )}
 
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block">
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      Action
-                    </a>
                     <button
                       onClick={logoutUser}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-full"

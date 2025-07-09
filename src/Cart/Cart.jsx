@@ -4,7 +4,6 @@ import Navbar1 from "../Navbar/Navbar1";
 import { Link } from "react-router-dom";
 
 function Cart() {
-  
   const { cart, increment, decrement, removeFromCart, clearCart } =
     useContext(CartContext);
 
@@ -68,8 +67,14 @@ function Cart() {
                     </div>
                   </div>
                   <button
-                    onClick={() => removeFromCart(item.id)}
-                    className="text-red-600 hover:underline text-sm"
+                    onClick={() => {
+                      const confirmDelete = window.confirm(
+                        "Are you sure to Remove the item"
+                      );
+
+                      if (confirmDelete) removeFromCart(item.id);
+                      className = "text-red-600 hover:underline text-sm";
+                    }}
                   >
                     Remove
                   </button>

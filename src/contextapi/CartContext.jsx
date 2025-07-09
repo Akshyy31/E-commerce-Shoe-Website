@@ -1,5 +1,7 @@
-import { createContext, useState, useContext } from "react";
+// CartContext.jsx
+import { createContext, useState, useContext, useEffect } from "react";
 import AuthContext from "./AuthContext";
+import axios from "axios";
 
 const CartContext = createContext();
 
@@ -7,70 +9,101 @@ export const CartProvider = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
   const [cart, setCart] = useState([]);
 
-  // Add to Cart
-  const addToCart = (product, quantity = 1) => {
-    if (!currentUser) {
-      alert("Please login to add items to cart.");
-      return;
-    }
+  const cartCount = cart.length; //het the cart length as count  for unique product
 
-    const existingItem = cart.find((item) => item.id === product.id);
+  // Fetch cart from backend on login
 
-    if (existingItem) {
-        
-      setCart((prevCart) =>
-        prevCart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        )
+  useEffect(() => {
+    if (currentUser?.id) fetchCart();
+  }, [currentUser]);
+
+  const fetchCart = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:3000/users/${currentUser.id}`
       );
-    } else {
-      setCart((prevCart) => [...prevCart, { ...product, quantity }]);
+      setCart(res.data.cart || []);
+    } catch (err) {
+      console.error("Error fetching cart:", err);
     }
   };
 
-  // Remove from Cart
+  const updateBackendCart = async (newCart) => {
+    if (!currentUser) return;
+    try {
+      await axios.patch(`http://localhost:3000/users/${currentUser.id}`, {
+        cart: newCart,
+      });
+    } catch (err) {
+      console.error("Error syncing cart:", err);
+    }
+  };
+
+
+  // add to cart 
+
+  const addToCart = async (product, quantity = 1) => {
+    if (!currentUser) return;
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/users/${currentUser.id}`
+      );
+      const existingCart = data.cart || [];
+
+      const updatedCart = existingCart.some((item) => item.id === product.id)
+        ? existingCart.map((item) =>
+            item.id === product.id
+              ? { ...item, quantity: item.quantity + quantity }
+              : item
+          )
+        : [...existingCart, { ...product, quantity }];
+
+      await updateBackendCart(updatedCart);
+      setCart(updatedCart);
+    } catch (err) {
+      console.error("Add to cart failed:", err);
+    }
+  };
+
   const removeFromCart = (productId) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+    const updatedCart = cart.filter((item) => item.id !== productId);
+    setCart(updatedCart);
+    updateBackendCart(updatedCart);
+    
   };
 
-  // Update Quantity
   const updateCartItem = (productId, newQuantity) => {
-    if (newQuantity <= 0) {
-      removeFromCart(productId);
-    } else {
-      setCart((prevCart) =>
-        prevCart.map((item) =>
-          item.id === productId ? { ...item, quantity: newQuantity } : item
-        )
-      );
-    }
+    const updatedCart =
+      newQuantity <= 0
+        ? cart.filter((item) => item.id !== productId)
+        : cart.map((item) =>
+            item.id === productId ? { ...item, quantity: newQuantity } : item
+          );
+    setCart(updatedCart);
+    updateBackendCart(updatedCart);
   };
 
-  // Clear Cart
   const clearCart = () => {
     setCart([]);
+    updateBackendCart([]);
   };
 
-  // Increment quantity
   const increment = (id) => {
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
+    const updatedCart = cart.map((item) =>
+      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
     );
+    setCart(updatedCart);
+    updateBackendCart(updatedCart);
   };
 
-  // Decrement quantity
   const decrement = (id) => {
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === id
-          ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
-          : item
-      )
+    const updatedCart = cart.map((item) =>
+      item.id === id && item.quantity > 1
+        ? { ...item, quantity: item.quantity - 1 }
+        : item
     );
+    setCart(updatedCart);
+    updateBackendCart(updatedCart);
   };
 
   return (
@@ -80,6 +113,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         updateCartItem,
+        cartCount,
         clearCart,
         increment,
         decrement,
