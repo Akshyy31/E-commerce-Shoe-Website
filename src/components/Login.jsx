@@ -1,17 +1,16 @@
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Row, Col, Form } from "react-bootstrap";
 import { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 import { User, X } from "lucide-react";
-// import { FaRegUser } from "react-icons/fa";
 import AuthContext from "../contextapi/AuthContext";
 import { toast } from "react-toastify";
 
 function Login({ show, handleClose, hideIcon = false }) {
+
   const [internalShow, setInternalShow] = useState(false);
   const modalVisible = show !== undefined ? show : internalShow;
-
   const { loginUser } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
@@ -25,18 +24,18 @@ function Login({ show, handleClose, hideIcon = false }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!formData.email || !formData.password) {
+    const { email, password } = formData;
+    if (!email || !password) {
       toast.error("Please fill both email and password.");
       return;
+    } else {
+      loginUser(email,password);
     }
 
-    loginUser(formData.email, formData.password);
-
     if (handleClose) {
-      handleClose(); // external
+      handleClose();
     } else {
-      setInternalShow(false); // internal
+      setInternalShow(false);
     }
   };
 

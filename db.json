@@ -6,6 +6,7 @@
       "email": "test@example.com",
       "password": "123",
       "role": "user",
+      "isBlock":false,
       "cart": [],
       "wishlist": []
     },
@@ -15,7 +16,23 @@
       "email": "akshayshaji688@gmail.com",
       "password": "akshay@123",
       "role": "user",
-      "cart": [],
+      "cart": [
+        {
+          "id": "2",
+          "name": "Nike Dunk Low Retro",
+          "image": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2990f85d-8844-4e5b-a222-31ed53a5a9d4/NIKE+DUNK+LOW+RETRO.png",
+          "image1": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2990f85d-8844-4e5b-a222-31ed53a5a9d4/NIKE+DUNK+LOW+RETRO.png",
+          "image2": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2990f85d-8844-4e5b-a222-31ed53a5a9d4/NIKE+DUNK+LOW+RETRO.png",
+          "image3": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2990f85d-8844-4e5b-a222-31ed53a5a9d4/NIKE+DUNK+LOW+RETRO.png",
+          "price": 7900,
+          "category": "Men",
+          "description": "High-Quality Formal shoe for men",
+          "stock": 8,
+          "quantity": 1,
+          "isNew": "new",
+          "brand": "Nike"
+        }
+      ],
       "wishlist": [],
       "orders": []
     },
@@ -25,11 +42,28 @@
       "email": "arjun@gmail.com",
       "password": "arjun@gmail.com",
       "role": "user",
-      "cart": [],
+      "cart": [
+        {
+          "id": "1",
+          "name": "Nike SB",
+          "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/9f9fe870-473f-4eab-bd5f-b3f89735556c/NIKE+SB+DUNK+LOW+PRO.png",
+          "image1": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/b597e2af-441b-4877-aa94-d086f65e22f4/NIKE+SB+DUNK+LOW+PRO.png",
+          "image2": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/1f6419a7-087e-40e0-89cf-86a7f3dbef06/NIKE+SB+DUNK+LOW+PRO.png",
+          "image3": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/a2db8c5d-932c-4464-91f3-f6aca7ecec79/NIKE+SB+DUNK+LOW+PRO.png",
+          "price": 9590,
+          "category": "Men",
+          "description": "Nike SB Dunk Low Pro Skate Shoe",
+          "stock": 1,
+          "quantity": 1,
+          "isNew": "new",
+          "brand": "Nike"
+        }
+      ],
       "orders": [
         {
           "id": 1752071577629,
           "date": "7/9/2025, 8:02:57 PM",
+          "status": "pending",
           "items": [
             {
               "id": "15",
@@ -48,30 +82,15 @@
             }
           ],
           "total": 24885
-        },
-        {
-          "id": 1752073076370,
-          "date": "7/9/2025, 8:27:56 PM",
-          "items": [
-            {
-              "id": "1",
-              "name": "Nike SB",
-              "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/9f9fe870-473f-4eab-bd5f-b3f89735556c/NIKE+SB+DUNK+LOW+PRO.png",
-              "image1": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/b597e2af-441b-4877-aa94-d086f65e22f4/NIKE+SB+DUNK+LOW+PRO.png",
-              "image2": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/1f6419a7-087e-40e0-89cf-86a7f3dbef06/NIKE+SB+DUNK+LOW+PRO.png",
-              "image3": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/a2db8c5d-932c-4464-91f3-f6aca7ecec79/NIKE+SB+DUNK+LOW+PRO.png",
-              "price": 9590,
-              "category": "Men",
-              "description": "Nike SB Dunk Low Pro Skate Shoe",
-              "stock": 1,
-              "quantity": 2,
-              "isNew": "new",
-              "brand": "Nike"
-            }
-          ],
-          "total": 19180
         }
       ]
+    },
+    {
+      "id": "db69",
+      "username": "sharmila01",
+      "email": "sharmila@gmail.com",
+      "password": "sharmila@gmail.com",
+      "role": "user"
     }
   ],
   "products": [

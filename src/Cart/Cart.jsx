@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import CartContext from "../contextapi/CartContext";
 import Navbar1 from "../Navbar/Navbar1";
 import { Link } from "react-router-dom";
 import AuthContext from "../contextapi/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Cart() {
   const { cart, increment, decrement, removeFromCart, clearCart } =
     useContext(CartContext);
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const totalPrice = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
@@ -129,19 +129,19 @@ function Cart() {
               <div className="flex justify-between">
                 <Link
                   to="/productlist"
-                  className="px-6 py-2 border border-black rounded hover:bg-gray-100 transition text-sm"
+                  className="px-5 py-2 !bg-black !text-white  border border-black rounded hover:no-underline hover:bg-gray-100 transition text-sm"
                 >
                   CONTINUE SHOPPING
                 </Link>
                 <button
                   onClick={() => {
                     if (!currentUser) {
-                      alert("Please log in to proceed to checkout.");
+                      toast.error("Login to Proceed to Check-out");
                     } else {
                       navigate("/check-out");
                     }
                   }}
-                  className="px-12 py-2 bg-black text-white rounded hover:bg-gray-800 transition text-sm"
+                  className="px-4 py-2 bg-black text-white rounded hover:bg-gray-800 transition text-sm"
                 >
                   CHECKOUT
                 </button>

@@ -44,11 +44,19 @@ function ProductDetail() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Sidebar - Filters mimic */}
           <aside className="md:col-span-1 bg-amber-100 p-3 rounded shadow h-fit sticky top-24">
-            <h2 className="text-lg font-semibold mb-4 text-gray-800">Product Filters</h2>
+            <h2 className="text-lg font-semibold mb-4 text-gray-800">
+              Product Filters
+            </h2>
             <div className="text-sm space-y-2">
-              <p>Category: <strong>{product.category}</strong></p>
-              <p>Brand: <strong>{product.brand}</strong></p>
-              <p>Price: <strong>₹{product.price}</strong></p>
+              <p>
+                Category: <strong>{product.category}</strong>
+              </p>
+              <p>
+                Brand: <strong>{product.brand}</strong>
+              </p>
+              <p>
+                Price: <strong>₹{product.price}</strong>
+              </p>
             </div>
           </aside>
 
@@ -63,27 +71,49 @@ function ProductDetail() {
                   className="w-full h-[400px] object-contain bg-amber-100 p-4 rounded shadow"
                 />
                 <div className="grid grid-cols-3 gap-2   bg-amber-100">
-                  <img src={product.image1} className="h-24 object-contain bg-white p-2 rounded" alt="alt" />
-                  <img src={product.image2} className="h-24 object-contain bg-white p-2 rounded" alt="alt" />
-                  <img src={product.image3} className="h-24 object-contain bg-white p-2 rounded" alt="alt" />
+                  <img
+                    src={product.image1}
+                    className="h-24 object-contain bg-white p-2 rounded"
+                    alt="alt"
+                  />
+                  <img
+                    src={product.image2}
+                    className="h-24 object-contain bg-white p-2 rounded"
+                    alt="alt"
+                  />
+                  <img
+                    src={product.image3}
+                    className="h-24 object-contain bg-white p-2 rounded"
+                    alt="alt"
+                  />
                 </div>
               </div>
 
               {/* Product Info */}
               <div className="space-y-4">
-                <h1 className="text-2xl font-bold text-gray-900">{product.name}</h1>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  {product.name}
+                </h1>
                 <p className="text-sm text-gray-600">{product.description}</p>
-                <div className="text-lg font-semibold text-black">₹ {Number(product.price).toLocaleString()}</div>
+                <div className="text-lg font-semibold text-black">
+                  ₹ {Number(product.price).toLocaleString()}
+                </div>
 
                 {/* Size Selection */}
                 <div className="space-y-1">
-                  <label className="text-sm font-medium text-gray-700">Select Size</label>
+                  <label className="text-sm font-medium text-gray-700">
+                    Select Size
+                  </label>
                   <div className="flex flex-wrap gap-2">
-                    {["35", "36", "37", "38", "39", "40", "41", "42"].map((size) => (
+                    {["7", "8", "9", "10", "11", "12"].map((size) => (
                       <button
                         key={size}
                         onClick={() => setSelectedSize(size)}
-                        className={`border px-4 py-1 rounded-full text-sm ${selectedSize === size ? "bg-black text-white" : "bg-white text-black"}`}
+                        className={`border px-4 py-1 rounded-full text-sm ${
+                          selectedSize === size
+                            ? "bg-black text-white"
+                            : "bg-white text-black"
+                        }`}
                       >
                         {size}
                       </button>
@@ -93,18 +123,30 @@ function ProductDetail() {
 
                 {/* Quantity */}
                 <div>
-                  <label className="text-sm font-medium text-gray-700">Quantity</label>
-                  <select
-                    value={quantity}
-                    onChange={(e) => setQuantity(Number(e.target.value))}
-                    className="mt-1 border px-3 py-2 rounded w-24"
-                  >
-                    {[...Array(10).keys()].map((n) => (
-                      <option key={n + 1} value={n + 1}>
-                        {String(n + 1).padStart(2, "0")}
-                      </option>
-                    ))}
-                  </select>
+                  <label className="text-sm font-medium text-gray-700">
+                    Quantity
+                  </label>
+                  <div className="mt-1 flex items-center gap-2">
+                    <button
+                      onClick={() =>
+                        setQuantity((prev) => Math.max(1, prev - 1))
+                      }
+                      className="px-3 py-1 border rounded"
+                    >
+                      −
+                    </button>
+                    <span className="w-10 text-center">
+                      {String(quantity).padStart(2, "0")}
+                    </span>
+                    <button
+                      onClick={() =>
+                        setQuantity((prev) =>  prev + 1)
+                      }
+                      className="px-3 py-1 border rounded"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
 
                 {/* Buttons */}

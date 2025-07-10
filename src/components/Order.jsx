@@ -41,12 +41,17 @@ const Order = () => {
             {orders.map((order) => (
               <div
                 key={order.id}
-                className="border border-gray-200 rounded-xl shadow-sm p-6 bg-white transition hover:shadow-md"
-              >
+                className="border border-gray-200 rounded-xl shadow-sm p-6 bg-white transition hover:shadow-md">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-lg font-semibold text-gray-800">
-                    Order #{order.id}
+                    Order_id #_{order.id}
                   </h3>
+                  <span className="text-sm text-gray-500">{order.date}</span>
+                </div>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-lg font-semibold text-gray-800">
+                    Order status : {order.status}
+                  </span>
                   <span className="text-sm text-gray-500">{order.date}</span>
                 </div>
 

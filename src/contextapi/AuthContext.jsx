@@ -10,65 +10,63 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null);
 
-  //  Load user from localStorage on page refresh
+  // Load user from localStorage on page refresh
   useEffect(() => {
     const userId = localStorage.getItem("userId");
     console.log("userid : ", userId);
-    
-    
-
     if (userId) {
       Api.get(`/users/${userId}`)
         .then((res) => setCurrentUser(res.data))
         .catch((err) => {
           console.error("Failed to restore user on refresh", err);
+          localStorage.removeItem("userid")
         });
     }
   }, []);
-  
 
   // Login logic
-  const loginUser = async (email, password) => {
+  const loginUser = async (email , password) => {
     try {
-      const cleanEmail = email.trim().toLowerCase();
-      const {
-        data: [user],
-      } = await axios.get(`http://localhost:3000/users?email=${cleanEmail}`);
+      const res = await Api.get(`/users?email=${email}&password=${password}`);
+      if (res.data.length > 0) {
+        const userData = res.data[0];
 
-      if (!user) {
-        toast.error("User not found. Please register first.");
-        return navigate("/register");
+        console.log("userData from login",userData);
+        
+        if (userData.isBlock) throw new Error("user is Blocked");
+
+        setCurrentUser(userData);
+        localStorage.setItem("userId", userData.id);
+        toast.success("Login SuccesFul");
+        return true;
+      } 
+      else {
+        toast.error("In valid credentials");
+        return false;
       }
-
-      if (user.password !== password) {
-        toast.error("Incorrect password");
-        return;
-      }
-
-      localStorage.setItem("userId", user.id);
-      setCurrentUser(user);
-      toast.success("Login successful!");
-      navigate("/");
     } catch {
       toast.error("Login failed. Please try again.");
     }
   };
 
-  // ✅ Registration logic
+  //Registration
   const registerUser = async (formData) => {
     try {
-      const { data: existingUsers } = await axios.get(
+      const existingUsers = await axios.get(
         `http://localhost:3000/users?email=${formData.email}`
       );
 
-      if (existingUsers.length > 0) {
-        toast.success("Email already registered. Please login.");
+      console.log(existingUsers);
+
+      if (existingUsers.data.length > 0) {
+        toast.warning("Email already registered. Please login.");
         navigate("/");
         return;
       }
 
       await axios.post("http://localhost:3000/users", formData);
-      alert("Registration successful!");
+      // alert("Registration successful!");
+      toast.success("Registration successful!");
       navigate("/");
     } catch (err) {
       console.error("Error registering user", err);
