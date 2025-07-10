@@ -39,8 +39,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-
-  // add to cart 
+  // add to cart
 
   const addToCart = async (product, quantity = 1) => {
     if (!currentUser) return;
@@ -69,7 +68,6 @@ export const CartProvider = ({ children }) => {
     const updatedCart = cart.filter((item) => item.id !== productId);
     setCart(updatedCart);
     updateBackendCart(updatedCart);
-    
   };
 
   const updateCartItem = (productId, newQuantity) => {
@@ -106,10 +104,10 @@ export const CartProvider = ({ children }) => {
     updateBackendCart(updatedCart);
   };
 
+  const getTotalAmount = () => {
+    return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  };
   
-const getTotalAmount = () => {
-  return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-};
   return (
     <CartContext.Provider
       value={{
@@ -121,8 +119,7 @@ const getTotalAmount = () => {
         clearCart,
         increment,
         decrement,
-        getTotalAmount
-
+        getTotalAmount,
       }}
     >
       {children}

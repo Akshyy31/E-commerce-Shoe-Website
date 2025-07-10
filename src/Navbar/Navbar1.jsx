@@ -89,12 +89,12 @@ function Navbar1() {
                   )}
                 </Link>
 
-                <a
-                  href="#"
+                <Link
+                  to={'/wishlist'}
                   className="text-gray-500 hover:text-indigo-600 px-3 py-2 text-sm font-medium"
                 >
                   <Heart size={24} color="black" />
-                </a>
+                </Link>
 
                 {/* <!-- Login Dropdown --> */}
                 <div className="relative group">

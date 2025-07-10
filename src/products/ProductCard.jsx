@@ -55,7 +55,9 @@ function ProductCard({ productList }) {
           </div>
         ))
       ) : (
-        <p className="col-span-full text-center text-gray-500">No Products Found</p>
+        <p className="col-span-full text-center text-gray-500">
+          No Products Found
+        </p>
       )}
     </div>
   );

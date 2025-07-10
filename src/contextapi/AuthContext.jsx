@@ -19,29 +19,28 @@ export const AuthProvider = ({ children }) => {
         .then((res) => setCurrentUser(res.data))
         .catch((err) => {
           console.error("Failed to restore user on refresh", err);
-          localStorage.removeItem("userid")
+          localStorage.removeItem("userid");
         });
     }
   }, []);
 
   // Login logic
-  const loginUser = async (email , password) => {
+  const loginUser = async (email, password) => {
     try {
       const res = await Api.get(`/users?email=${email}&password=${password}`);
       if (res.data.length > 0) {
         const userData = res.data[0];
 
-        console.log("userData from login",userData);
-        
+        console.log("userData from login", userData);
+
         if (userData.isBlock) throw new Error("user is Blocked");
 
         setCurrentUser(userData);
         localStorage.setItem("userId", userData.id);
-        toast.success("Login SuccesFul");
+        toast.success("Login Succesfully");
         return true;
-      } 
-      else {
-        toast.error("In valid credentials");
+      } else {
+        toast.error("In-valid credentials");
         return false;
       }
     } catch {
@@ -73,7 +72,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // ✅ Logout logic
+  //Logout logic
   const logoutUser = () => {
     localStorage.removeItem("userId");
     setCurrentUser(null);

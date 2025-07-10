@@ -10,6 +10,7 @@ import Cart from "./Cart/Cart";
 import Checkout from "./components/CheckOut";
 import Order from "./components/Order";
 import PrivateRoute from "./components/PrivateRoute";
+import Wishlist from "./Wishlist page/Wishlist";
 
 function App() {
   return (
@@ -18,8 +19,22 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/productlist" element={<ProductList />} />
-        <Route path="/product-detail/:id" element={<ProductDetail />} />
+        <Route
+          path="/productlist"
+          element={
+            <PrivateRoute>
+              <ProductList />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/product-detail/:id"
+          element={
+            <PrivateRoute>
+              <ProductDetail/>
+            </PrivateRoute>
+          }
+        />
         <Route path="/cartpage" element={<Cart />} />
         <Route
           path="/check-out"
@@ -30,6 +45,7 @@ function App() {
           }
         />
         <Route path="/order-confirmation" element={<Order />} />
+        <Route path='/wishlist'  element = {<Wishlist/>}/>
       </Routes>
     </div>
   );
