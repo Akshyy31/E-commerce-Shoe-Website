@@ -7,10 +7,11 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Cart() {
-  const { cart, increment, decrement, removeFromCart, clearCart } =
-    useContext(CartContext);
+  const { cart, increment, decrement, removeFromCart } = useContext(CartContext);
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  
   const totalPrice = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0

@@ -30,11 +30,8 @@ export const AuthProvider = ({ children }) => {
       const res = await Api.get(`/users?email=${email}&password=${password}`);
       if (res.data.length > 0) {
         const userData = res.data[0];
-
         console.log("userData from login", userData);
-
         if (userData.isBlock) throw new Error("user is Blocked");
-
         setCurrentUser(userData);
         localStorage.setItem("userId", userData.id);
         toast.success("Login Succesfully");

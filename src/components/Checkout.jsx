@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import CartContext from "../contextapi/CartContext";
 import AuthContext from "../contextapi/AuthContext";
-import axios from "axios";
 import Navbar1 from "../Navbar/Navbar1";
+import { Api } from "../commonapi/api";
 
 const Checkout = () => {
   const { cart, getTotalAmount, clearCart } = useContext(CartContext);
@@ -22,7 +22,7 @@ const Checkout = () => {
     }
 
     try {
-      const userRes = await axios.get(`http://localhost:3000/users/${currentUser.id}`);
+      const userRes = await Api.get(`/users/${currentUser.id}`);
       const user = userRes.data;
 
       const newOrder = {
@@ -34,7 +34,7 @@ const Checkout = () => {
 
       const updatedOrders = [...(user.orders || []), newOrder];
 
-      await axios.patch(`http://localhost:3000/users/${currentUser.id}`, {
+      await Api.patch(`users/${currentUser.id}`, {
         orders: updatedOrders,
         cart: [],
       });
@@ -46,8 +46,7 @@ const Checkout = () => {
       alert("Something went wrong placing the order.");
     }
   };
-console.log("Cart Items:", cart);  
-console.log("Total Amount:", getTotalAmount()); 
+
   return (
     <>
       <Navbar1 />
@@ -63,13 +62,48 @@ console.log("Total Amount:", getTotalAmount());
                 Shipping Address
               </h3>
               <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" placeholder="Full Name" className="border px-4 py-3 rounded-md" required />
-                <input type="text" placeholder="Phone Number" className="border px-4 py-3 rounded-md" required />
-                <input type="email" placeholder="Email" className="border px-4 py-3 rounded-md md:col-span-2" required />
-                <input type="text" placeholder="Address Line 1" className="border px-4 py-3 rounded-md md:col-span-2" required />
-                <input type="text" placeholder="City" className="border px-4 py-3 rounded-md" required />
-                <input type="text" placeholder="State" className="border px-4 py-3 rounded-md" required />
-                <input type="text" placeholder="Pincode" className="border px-4 py-3 rounded-md" required />
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  className="border px-4 py-3 rounded-md"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Phone Number"
+                  className="border px-4 py-3 rounded-md"
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="border px-4 py-3 rounded-md md:col-span-2"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Address Line 1"
+                  className="border px-4 py-3 rounded-md md:col-span-2"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="City"
+                  className="border px-4 py-3 rounded-md"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="State"
+                  className="border px-4 py-3 rounded-md"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Pincode"
+                  className="border px-4 py-3 rounded-md"
+                  required
+                />
               </form>
             </section>
 
@@ -80,10 +114,15 @@ console.log("Total Amount:", getTotalAmount());
               </h3>
               <div className="space-y-4">
                 {cart.map((item) => (
-                  <div key={item.id} className="flex justify-between items-center border p-3 rounded-lg shadow-sm bg-gray-50">
+                  <div
+                    key={item.id}
+                    className="flex justify-between items-center border p-3 rounded-lg shadow-sm bg-gray-50"
+                  >
                     <div>
                       <p className="font-medium text-gray-800">{item.name}</p>
-                      <p className="text-sm text-gray-600">₹{item.price} × {item.quantity}</p>
+                      <p className="text-sm text-gray-600">
+                        ₹{item.price} × {item.quantity}
+                      </p>
                     </div>
                     <p className="text-lg font-semibold text-gray-700">
                       ₹{item.price * item.quantity}
@@ -96,7 +135,9 @@ console.log("Total Amount:", getTotalAmount());
 
           {/* Right: Order Summary */}
           <div className="bg-white p-8 rounded-2xl shadow-md h-fit sticky top-24">
-            <h2 className="text-xl font-bold text-gray-800 mb-6">Order Summary</h2>
+            <h2 className="text-xl font-bold text-gray-800 mb-6">
+              Order Summary
+            </h2>
 
             <div className="space-y-4 text-gray-700">
               {cart.map((item) => (

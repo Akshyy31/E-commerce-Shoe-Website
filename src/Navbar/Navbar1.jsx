@@ -1,4 +1,4 @@
-import { React, useContext } from "react";
+import { React, useContext, useState,useEffect } from "react";
 import Login from "../components/Login";
 import AuthContext from "../contextapi/AuthContext";
 import { Link } from "react-router-dom";
@@ -8,7 +8,11 @@ import CartContext from "../contextapi/CartContext";
 function Navbar1() {
   const { currentUser, logoutUser } = useContext(AuthContext);
   const { cartCount } = useContext(CartContext);
-  
+  const [showDropdown, setShowDropdown] = useState(false);
+  useEffect(() => {
+  setShowDropdown(false); // Hide dropdown on login/logout
+}, [currentUser]);
+
   return (
     <div>
       <nav className="bg-white shadow-sm sticky top-0 z-50">
@@ -90,7 +94,7 @@ function Navbar1() {
                 </Link>
 
                 <Link
-                  to={'/wishlist'}
+                  to={"/wishlist"}
                   className="text-gray-500 hover:text-indigo-600 px-3 py-2 text-sm font-medium"
                 >
                   <Heart size={24} color="black" />
@@ -99,36 +103,36 @@ function Navbar1() {
                 {/* <!-- Login Dropdown --> */}
                 <div className="relative group">
                   {currentUser ? (
-                    <div className="relative group">
-                      <div className="flex items-center cursor-pointer px-3 py-2 text-sm font-medium text-white bg-black rounded-full">
+                    <div className="relative">
+                      <div
+                        className="flex items-center cursor-pointer px-3 py-2 text-sm font-medium text-white bg-black rounded-full"
+                        onClick={() => setShowDropdown((prev) => !prev)}
+                      >
                         Hi, {currentUser.username}
                       </div>
 
                       {/* Dropdown menu */}
-                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block">
-                        <a
-                          href=""
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        >
-                          {currentUser.username}
-                        </a>
-
-                        <div className="border-t border-gray-200 my-1"></div>
-                      </div>
+                      {showDropdown && (
+                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                          <a
+                            href="#"
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          >
+                            Profile
+                          </a>
+                          <button
+                            onClick={logoutUser}
+                            className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          >
+                            Log out
+                          </button>
+                          <div className="border-t border-gray-200 my-1"></div>
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <Login />
                   )}
-
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block">
-                    <button
-                      onClick={logoutUser}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-full"
-                    >
-                      Log out
-                    </button>
-                    <div className="border-t border-gray-200 my-1"></div>
-                  </div>
                 </div>
               </div>
             </div>

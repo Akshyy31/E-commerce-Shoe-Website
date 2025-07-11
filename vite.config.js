@@ -8,6 +8,7 @@ export default defineConfig({
    server: {
     watch: {
       ignored: ['**/db.json'], // Ignore db.json
+      historyApiFallback: true,
     },
   },
 });

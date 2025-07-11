@@ -8,7 +8,8 @@ function ProductList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortOption, setSortOption] = useState("default");
-  // 🧠 Filter logic
+  
+  //  Filter logic
  const displayedProducts = productList
   .filter((product) => {
     const matchesCategory =
@@ -21,11 +22,10 @@ function ProductList() {
   .sort((a, b) => {
     if (sortOption === "lowToHigh") return a.price - b.price;
     if (sortOption === "highToLow") return b.price - a.price;
-    if (sortOption === "nameAZ") return a.name.localeCompare(b.name);
-    if (sortOption === "nameZA") return b.name.localeCompare(a.name);
+    
     return 0;
   });
-  // 📦 Fetch products on load
+  //  Fetch products on load
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -42,7 +42,7 @@ function ProductList() {
     <div className="bg-gray-50 min-h-screen">
       <Navbar1 />
       <div className="max-w-7xl mx-auto px-4 py-6">
-        <h1 className="text-3xl font-bold text-center mb-8"></h1>
+        
 
         {/* Layout: Sidebar + Product Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">

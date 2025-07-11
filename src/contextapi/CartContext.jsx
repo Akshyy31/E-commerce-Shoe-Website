@@ -2,6 +2,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import AuthContext from "./AuthContext";
 import axios from "axios";
+import { Api } from "../commonapi/api";
 
 const CartContext = createContext();
 
@@ -19,9 +20,8 @@ export const CartProvider = ({ children }) => {
 
   const fetchCart = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:3000/users/${currentUser.id}`
-      );
+      const res = await Api.get(`/users/${currentUser.id}`);
+      console.log("result of user from cart:", res);
       setCart(res.data.cart || []);
     } catch (err) {
       console.error("Error fetching cart:", err);
@@ -29,9 +29,11 @@ export const CartProvider = ({ children }) => {
   };
 
   const updateBackendCart = async (newCart) => {
-    if (!currentUser) return;
+    if (!currentUser) {
+      return;
+    }
     try {
-      await axios.patch(`http://localhost:3000/users/${currentUser.id}`, {
+      await Api.patch(`/users/${currentUser.id}`, {
         cart: newCart,
       });
     } catch (err) {
@@ -40,13 +42,10 @@ export const CartProvider = ({ children }) => {
   };
 
   // add to cart
-
   const addToCart = async (product, quantity = 1) => {
     if (!currentUser) return;
     try {
-      const { data } = await axios.get(
-        `http://localhost:3000/users/${currentUser.id}`
-      );
+      const { data } = await Api.get(`/users/${currentUser.id}`);
       const existingCart = data.cart || [];
 
       const updatedCart = existingCart.some((item) => item.id === product.id)
@@ -70,16 +69,6 @@ export const CartProvider = ({ children }) => {
     updateBackendCart(updatedCart);
   };
 
-  const updateCartItem = (productId, newQuantity) => {
-    const updatedCart =
-      newQuantity <= 0
-        ? cart.filter((item) => item.id !== productId)
-        : cart.map((item) =>
-            item.id === productId ? { ...item, quantity: newQuantity } : item
-          );
-    setCart(updatedCart);
-    updateBackendCart(updatedCart);
-  };
 
   const clearCart = () => {
     setCart([]);
@@ -107,14 +96,13 @@ export const CartProvider = ({ children }) => {
   const getTotalAmount = () => {
     return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   };
-  
+
   return (
     <CartContext.Provider
       value={{
         cart,
         addToCart,
         removeFromCart,
-        updateCartItem,
         cartCount,
         clearCart,
         increment,

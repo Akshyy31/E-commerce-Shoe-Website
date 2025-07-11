@@ -35,7 +35,7 @@ function ProductDetail() {
   const handleAddToCart = () => {
     if (!currentUser) {
       setShowLoginModal(true);
-      return;
+      return
     }
     addToCart(product, quantity);
     toast.success(`${quantity} item(s) added to cart.`);
@@ -59,7 +59,6 @@ function ProductDetail() {
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
   const decrementQuantity = () => {
     if (quantity > 1) setQuantity((prev) => prev - 1);
-    else toast.warn("Minimum quantity is 1");
   };
 
   return (

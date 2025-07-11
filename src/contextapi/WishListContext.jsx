@@ -66,7 +66,7 @@ export const WishlistProvider = ({ children }) => {
     updateBackendWishlist([]);
   };
 
-  const isInWishlist = (productId) =>
+  const isInWishlist = (productId) => 
     wishlist.some((item) => item.id === productId);
 
   return (

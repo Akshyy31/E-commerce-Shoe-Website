@@ -18,17 +18,17 @@
       "role": "user",
       "cart": [
         {
-          "id": "2",
-          "name": "Nike Dunk Low Retro",
-          "image": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2990f85d-8844-4e5b-a222-31ed53a5a9d4/NIKE+DUNK+LOW+RETRO.png",
-          "image1": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2990f85d-8844-4e5b-a222-31ed53a5a9d4/NIKE+DUNK+LOW+RETRO.png",
-          "image2": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2990f85d-8844-4e5b-a222-31ed53a5a9d4/NIKE+DUNK+LOW+RETRO.png",
-          "image3": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2990f85d-8844-4e5b-a222-31ed53a5a9d4/NIKE+DUNK+LOW+RETRO.png",
-          "price": 7900,
+          "id": "1",
+          "name": "Nike SB",
+          "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/9f9fe870-473f-4eab-bd5f-b3f89735556c/NIKE+SB+DUNK+LOW+PRO.png",
+          "image1": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/b597e2af-441b-4877-aa94-d086f65e22f4/NIKE+SB+DUNK+LOW+PRO.png",
+          "image2": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/1f6419a7-087e-40e0-89cf-86a7f3dbef06/NIKE+SB+DUNK+LOW+PRO.png",
+          "image3": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/a2db8c5d-932c-4464-91f3-f6aca7ecec79/NIKE+SB+DUNK+LOW+PRO.png",
+          "price": 9590,
           "category": "Men",
-          "description": "High-Quality Formal shoe for men",
-          "stock": 8,
-          "quantity": 7,
+          "description": "Nike SB Dunk Low Pro Skate Shoe",
+          "stock": 1,
+          "quantity": 1,
           "isNew": "new",
           "brand": "Nike"
         }
@@ -45,6 +45,21 @@
           "category": "Men",
           "description": "Nike SB Dunk Low Pro Skate Shoe",
           "stock": 1,
+          "quantity": 1,
+          "isNew": "new",
+          "brand": "Nike"
+        },
+        {
+          "id": "2",
+          "name": "Nike Dunk Low Retro",
+          "image": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2990f85d-8844-4e5b-a222-31ed53a5a9d4/NIKE+DUNK+LOW+RETRO.png",
+          "image1": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2990f85d-8844-4e5b-a222-31ed53a5a9d4/NIKE+DUNK+LOW+RETRO.png",
+          "image2": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2990f85d-8844-4e5b-a222-31ed53a5a9d4/NIKE+DUNK+LOW+RETRO.png",
+          "image3": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2990f85d-8844-4e5b-a222-31ed53a5a9d4/NIKE+DUNK+LOW+RETRO.png",
+          "price": 7900,
+          "category": "Men",
+          "description": "High-Quality Formal shoe for men",
+          "stock": 8,
           "quantity": 1,
           "isNew": "new",
           "brand": "Nike"
@@ -87,6 +102,65 @@
             }
           ],
           "total": 41190
+        },
+        {
+          "id": 1752218099930,
+          "date": "7/11/2025, 12:44:59 PM",
+          "items": [
+            {
+              "id": "1",
+              "name": "Nike SB",
+              "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/9f9fe870-473f-4eab-bd5f-b3f89735556c/NIKE+SB+DUNK+LOW+PRO.png",
+              "image1": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/b597e2af-441b-4877-aa94-d086f65e22f4/NIKE+SB+DUNK+LOW+PRO.png",
+              "image2": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/1f6419a7-087e-40e0-89cf-86a7f3dbef06/NIKE+SB+DUNK+LOW+PRO.png",
+              "image3": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/a2db8c5d-932c-4464-91f3-f6aca7ecec79/NIKE+SB+DUNK+LOW+PRO.png",
+              "price": 9590,
+              "category": "Men",
+              "description": "Nike SB Dunk Low Pro Skate Shoe",
+              "stock": 1,
+              "quantity": 1,
+              "isNew": "new",
+              "brand": "Nike"
+            }
+          ],
+          "total": 9590
+        },
+        {
+          "id": 1752224756810,
+          "date": "7/11/2025, 2:35:56 PM",
+          "items": [
+            {
+              "id": "1",
+              "name": "Nike SB",
+              "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/9f9fe870-473f-4eab-bd5f-b3f89735556c/NIKE+SB+DUNK+LOW+PRO.png",
+              "image1": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/b597e2af-441b-4877-aa94-d086f65e22f4/NIKE+SB+DUNK+LOW+PRO.png",
+              "image2": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/1f6419a7-087e-40e0-89cf-86a7f3dbef06/NIKE+SB+DUNK+LOW+PRO.png",
+              "image3": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/a2db8c5d-932c-4464-91f3-f6aca7ecec79/NIKE+SB+DUNK+LOW+PRO.png",
+              "price": 9590,
+              "category": "Men",
+              "description": "Nike SB Dunk Low Pro Skate Shoe",
+              "stock": 1,
+              "quantity": 4,
+              "isNew": "new",
+              "brand": "Nike"
+            },
+            {
+              "id": "3",
+              "name": "Nike Dunk NextNature",
+              "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/a5f788d9-208d-47f5-a90a-6e331cd6acbf/W+NIKE+DUNK+LOW+NEXT+NATURE.png",
+              "image1": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/b7749f8a-2e8f-41d4-bc87-577555eb6b49/W+NIKE+DUNK+LOW+NEXT+NATURE.png",
+              "image2": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/c9f111a3-7b98-439c-b607-3213daf3feac/W+NIKE+DUNK+LOW+NEXT+NATURE.png",
+              "image3": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/143c3087-0f60-48d7-8d07-5655e62fc72b/W+NIKE+DUNK+LOW+NEXT+NATURE.png",
+              "price": 8295,
+              "category": "Women",
+              "description": "Sustainable Materials Nike Dunk Low Next Nature",
+              "stock": 8,
+              "quantity": 1,
+              "isNew": "new",
+              "brand": "Nike"
+            }
+          ],
+          "total": 46655
         }
       ]
     },
@@ -144,7 +218,25 @@
       "username": "sharmila01",
       "email": "sharmila@gmail.com",
       "password": "sharmila@gmail.com",
-      "role": "user"
+      "role": "user",
+      "wishlist": [],
+      "cart": [
+        {
+          "id": "4",
+          "name": "Nike Air Max Plus",
+          "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/87a2bcdf-c846-4747-a3dd-7b5401bc1ca3/NIKE+AIR+MAX+PLUS.png",
+          "image1": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/9ff11d83-d063-4bb9-81ed-0bf524126cd9/NIKE+AIR+MAX+PLUS.png",
+          "image2": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/c163b6d4-a9b0-43d3-82ed-845acf46f1e4/NIKE+AIR+MAX+PLUS.png",
+          "image3": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/b333b646-2206-4ce7-9eb3-8854c562f05f/NIKE+AIR+MAX+PLUS.png",
+          "price": 8295,
+          "category": "Men",
+          "description": "Sustainable Materials Nike Dunk Low Next Nature",
+          "stock": 8,
+          "quantity": 3,
+          "isNew": "",
+          "brand": "Nike"
+        }
+      ]
     }
   ],
   "products": [

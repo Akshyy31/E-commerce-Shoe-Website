@@ -22,26 +22,26 @@ function App() {
         <Route
           path="/productlist"
           element={
-            <PrivateRoute>
+           
               <ProductList />
-            </PrivateRoute>
+            
           }
         />
         <Route
           path="/product-detail/:id"
           element={
-            <PrivateRoute>
+           
               <ProductDetail/>
-            </PrivateRoute>
+            
           }
         />
         <Route path="/cartpage" element={<Cart />} />
         <Route
           path="/check-out"
           element={
-            <PrivateRoute>
+           
               <Checkout />
-            </PrivateRoute>
+           
           }
         />
         <Route path="/order-confirmation" element={<Order />} />
