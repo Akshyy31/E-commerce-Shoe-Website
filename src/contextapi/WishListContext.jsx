@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import AuthContext from "./AuthContext";
-import axios from "axios";
+
+import { Api } from "../commonapi/api";
 
 const WishlistContext = createContext();
 
@@ -16,9 +17,7 @@ export const WishlistProvider = ({ children }) => {
 
   const fetchWishlist = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:3000/users/${currentUser.id}`
-      );
+      const res = await Api.get(`/users/${currentUser.id}`);
       setWishlist(res.data.wishlist || []);
     } catch (err) {
       console.error("Error fetching wishlist:", err);
@@ -27,7 +26,7 @@ export const WishlistProvider = ({ children }) => {
 
   const updateBackendWishlist = async (newWishlist) => {
     try {
-      await axios.patch(`http://localhost:3000/users/${currentUser.id}`, {
+      await Api.patch(`/users/${currentUser.id}`, {
         wishlist: newWishlist,
       });
     } catch (err) {
@@ -66,7 +65,7 @@ export const WishlistProvider = ({ children }) => {
     updateBackendWishlist([]);
   };
 
-  const isInWishlist = (productId) => 
+  const isInWishlist = (productId) =>
     wishlist.some((item) => item.id === productId);
 
   return (
