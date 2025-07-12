@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 import { Api } from "../commonapi/api";
 import { toast } from "react-toastify";
 
@@ -48,8 +48,8 @@ export const AuthProvider = ({ children }) => {
   //Registration
   const registerUser = async (formData) => {
     try {
-      const existingUsers = await axios.get(
-        `http://localhost:3000/users?email=${formData.email}`
+      const existingUsers = await Api.get(
+        `/users?email=${formData.email}`
       );
 
       console.log(existingUsers);
@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }) => {
         return;
       }
 
-      await axios.post("http://localhost:3000/users", formData);
+      await Api.post("/users", formData);
       // alert("Registration successful!");
       toast.success("Registration successful!");
       navigate("/");
