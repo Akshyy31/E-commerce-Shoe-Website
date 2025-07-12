@@ -15,12 +15,10 @@ const Checkout = () => {
       alert("Please log in to place an order.");
       return;
     }
-
     if (cart.length === 0) {
       alert("Your cart is empty.");
       return;
     }
-
     try {
       const userRes = await Api.get(`/users/${currentUser.id}`);
       const user = userRes.data;
@@ -43,7 +41,7 @@ const Checkout = () => {
       navigate("/order-confirmation");
     } catch (error) {
       console.error("Failed to place order:", error);
-      alert("Something went wrong placing the order.");
+      toast.error("Something went wrong placing the order.");
     }
   };
 

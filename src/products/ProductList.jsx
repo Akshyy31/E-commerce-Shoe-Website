@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar1 from "../Navbar/Navbar1";
 import { Api } from "../commonapi/api";
 import ProductCard from "./ProductCard";
+import Footer from "../components/Footer";
 
 function ProductList() {
   const [productList, SetProductList] = useState([]);
@@ -107,6 +108,7 @@ function ProductList() {
           </main>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

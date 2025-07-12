@@ -15,7 +15,7 @@ function HomeCard() {
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {products && products.length > 0 ? (
-          products.slice(0, 4).map((product) => (
+          products.map((product) => (
             <div
               key={product.id}
               className="relative group bg-white border rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden"
@@ -37,7 +37,7 @@ function HomeCard() {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="max-h-32 object-contain transition-transform duration-300 group-hover:scale-105"
+                  className="max-h-32 object-contain transition-transform duration-300 group-hover:scale-135"
                 />
               </div>
 
@@ -49,7 +49,7 @@ function HomeCard() {
                 <p className="text-xs text-gray-500 line-clamp-2">
                   {product.description}
                 </p>
-                <p className="text-indigo-700 font-bold text-base mt-1">
+                <p className="text-black font-bold text-base mt-1">
                   ₹{product.price}
                 </p>
               </div>

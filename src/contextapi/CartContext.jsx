@@ -56,7 +56,7 @@ export const CartProvider = ({ children }) => {
           )
         : [...existingCart, { ...product, quantity }];
 
-      await updateBackendCart(updatedCart);
+      updateBackendCart(updatedCart);
       setCart(updatedCart);
     } catch (err) {
       console.error("Add to cart failed:", err);
@@ -75,17 +75,17 @@ export const CartProvider = ({ children }) => {
     updateBackendCart([]);
   };
 
-  const increment = (id) => {
+  const increment = (p_id) => {
     const updatedCart = cart.map((item) =>
-      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      item.id === p_id ? { ...item, quantity: item.quantity + 1 } : item
     );
     setCart(updatedCart);
     updateBackendCart(updatedCart);
   };
 
-  const decrement = (id) => {
+  const decrement = (p_id) => {
     const updatedCart = cart.map((item) =>
-      item.id === id && item.quantity > 1
+      item.id === p_id && item.quantity > 1
         ? { ...item, quantity: item.quantity - 1 }
         : item
     );

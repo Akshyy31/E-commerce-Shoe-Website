@@ -8,6 +8,7 @@ import Navbar1 from "../Navbar/Navbar1";
 import Login from "../components/Login";
 import { toast, ToastContainer } from "react-toastify";
 import { FaHeart, FaHeartBroken } from "react-icons/fa";
+import Footer from "../components/Footer";
 
 function ProductDetail() {
   const { id } = useParams();
@@ -35,7 +36,7 @@ function ProductDetail() {
   const handleAddToCart = () => {
     if (!currentUser) {
       setShowLoginModal(true);
-      return
+      return;
     }
     addToCart(product, quantity);
     toast.success(`${quantity} item(s) added to cart.`);
@@ -67,8 +68,8 @@ function ProductDetail() {
       <div className="container mx-auto p-4 min-h-screen">
         <ToastContainer />
 
-        <div className="max-w-7xl mx-auto px-4 py-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 shadow-md rounded-lg p-4">
+        <div className="max-w-8xl h px-4  ">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 shadow-md rounded-lg p-4 bg-amber-100">
             {/* Product Image */}
             <div className="flex flex-col gap-4 justify-center items-center">
               <img
@@ -112,7 +113,9 @@ function ProductDetail() {
                 )}
               </div>
 
-              <h2 className="text-2xl font-bold">{product.name}</h2>
+              <h2 className="text-2xl text-red-500 font-bold">
+                {product.name}
+              </h2>
               <p className="text-gray-600">{product.description}</p>
               <div className="text-lg font-semibold text-black">
                 ₹ {Number(product.price).toLocaleString()}
@@ -218,6 +221,7 @@ function ProductDetail() {
           hideIcon={true}
         />
       </div>
+      <Footer/>
     </div>
   );
 }
